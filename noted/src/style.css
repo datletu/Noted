@@ -1,5 +1,7 @@
-.welcome {
-  color: rgb(15, 243, 220);
+.AppName {
+  color: rgb(243, 87, 15);
   font-size: 3em;
   text-align: center;
+  font-style: italic;
+  font-family: 'Brush Script MT', cursive;
 }

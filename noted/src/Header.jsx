@@ -6,7 +6,14 @@ const AppName = 'Noted';
 export default function Header() {
     return (
       <>
-        <h1 className='welcome'>Welcome to {AppName}</h1>
+        <nav className="navbar bg-body-tertiary">
+          <div className="container-fluid ">
+          <a className="navbar-brand d-flex flex-row align-items-center" href="#">
+            <img src="/icon.png" style={{ width: '100px', height: '100px' }}/>
+              <h1 className='AppName'>{AppName}</h1>
+          </a>
+          </div>
+        </nav>
       </>
     );
   }

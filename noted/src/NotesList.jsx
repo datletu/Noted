@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function NotesList(props) {
     return (
         <div className='notes-list'>
-            <h1>Notes</h1>
             <ul className='list-group'>
                 {props.notes.map(note => (
                     <li key={note.id} className='list-group-item'>
