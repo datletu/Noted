@@ -1,21 +1,30 @@
 import { createRoot } from 'react-dom/client';
-import React from 'react';
-import './style.css';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css';
 import Header from './Header';
 import NotesList from './NotesList';
-
+import Footer from './Footer';
 
 const root = createRoot(document.querySelector('#root'));
-const notes = [
-    { id: 1, title: 'Note 1', date: '2023-10-01', content: 'Content of note 1' },
-    { id: 2, title: 'Note 2', date: '2023-10-02', content: 'Content of note 2' },
-    { id: 3, title: 'Note 3', date: '2023-10-03', content: 'Content of note 3' },
-];
 
-root.render(
-    <>
-        <Header />
-        <NotesList notes={notes} />
-    </>
-);
+function App() {
+    const [notes, setNotes] = useState([]);
+
+    useEffect(() => {
+        fetch('/notes.json')
+            .then(response => response.json())
+            .then(data => setNotes(data))
+            .catch(error => console.error('Error fetching notes:', error));
+    }, []);
+
+    return (
+        <div>
+            <Header />
+            <NotesList notes={notes} />
+            <Footer />
+        </div>
+    );
+}
+
+root.render(<App />);
