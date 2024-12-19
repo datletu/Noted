@@ -2,28 +2,43 @@ import React from 'react';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function handleSubmit(event) {
+function handleSubmit(event, addNote) {
     event.preventDefault();
     console.log('submitting note');
     const formData = new FormData(event.target);
-    const newNote = formData.get('newNote');
-    console.log(newNote);
+    const newNoteTitle = formData.get('newNoteTitle');
+    const newNoteBody = formData.get('newNoteBody');
+    const newNote = {
+        id: Date.now(),
+        title: newNoteTitle,
+        date: new Date().toLocaleDateString(),
+        content: newNoteBody
+    };
+    addNote(newNote);
+    
+    
 }
 
 // the notes, each note is {id, title, date, content}
 export default function NotesList(props) {
     return (
         <div className='notes-list'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(event) => handleSubmit(event, props.addNote)}>
                 <div className="mb-3  d-flex flex-column align-items-center">
                     <label htmlFor="exampleInputEmail1" className="form-label"></label>
                     <div className='w-50 d-flex flex-row align-items-center'>
                         <input 
                             type="text"
                             className="form-control" 
-                            id="exampleInputEmail1" 
-                            placeholder='Input your notes here'
-                            name='newNote' />
+                            id="titleInput" 
+                            placeholder='Input your notes title'
+                            name='newNoteTitle' />
+                        <input 
+                            type="text" 
+                            name='newNoteBody'
+                            id='bodyInput'
+                            className='form-control'
+                            placeholder='Input your notes content' />
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </div>

@@ -18,10 +18,15 @@ function App() {
             .catch(error => console.error('Error fetching notes:', error));
     }, []);
 
+    // Function to add a new note
+    const addNote = (newNote) => {
+        setNotes([...notes, newNote]);
+    };
+
     return (
         <div>
             <Header />
-            <NotesList notes={notes} />
+            <NotesList notes={notes} addNote={addNote} />
             <Footer />
         </div>
     );
