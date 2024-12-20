@@ -10,7 +10,7 @@ const root = createRoot(document.querySelector('#root'));
 
 function App() {
     const [notes, setNotes] = useState([]);
-
+    
     useEffect(() => {
         fetch('/notes.json')
             .then(response => response.json())
