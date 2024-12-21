@@ -9,10 +9,8 @@ function handleSubmit(event, addNote) {
     const newNoteTitle = formData.get('newNoteTitle');
     const newNoteBody = formData.get('newNoteBody');
     const newNote = {
-        id: Date.now(),
         title: newNoteTitle,
-        date: new Date().toLocaleDateString(),
-        content: newNoteBody
+        content : newNoteBody
     };
     addNote(newNote);
     
